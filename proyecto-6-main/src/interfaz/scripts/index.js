@@ -2,6 +2,7 @@ import { MDCRipple } from '@material/ripple';
 import { MDCTopAppBar } from '@material/top-app-bar';
 import { MDCTabBar } from '@material/tab-bar';
 import { MDCTextField } from '@material/textfield';
+import { MDCList } from '@material/list/component.js';
 import { MDCSelect } from '@material/select';
 import {MDCSnackbar} from '@material/snackbar';
 import ListaPeliculas from '../../dominio/lista-peliculas.mjs';
@@ -16,8 +17,13 @@ const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
 });
 
 
+
+
+
 const listaPeliculas = new ListaPeliculas();
 const listaLigas = setTestData();
+const ligas = listaLigas[0]
+const user1 = listaLigas[1];
 console.log(listaLigas);
 
 const topAppBarElement = document.querySelector('.mdc-top-app-bar');
@@ -78,7 +84,8 @@ addButton.listen('click', () => {
       'name': title,'ptsAciertosExactos': year,'ptsAciertosParciales': year2
     };
     let newLiga = new Liga(leagueInfo);
-    listaLigas.push(newLiga);
+    user1.addLiga(newLiga);
+    ligas.push(newLiga);
     const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
     snackbar.labelText = 'Liga agregada correctamente';
     snackbar.open();
@@ -98,13 +105,12 @@ function borrarCampos(){
   selectGenre.value = "";
 }
 
-function cargarListaPeliculas(){
-  let peliculas = listaPeliculas.getPeliculas();
+function cargarListaLigas(){
   let lista = document.getElementById('peliculas');
   lista.innerHTML = "";
 
-  for(let i = 0; i < peliculas.length; i++){
-    let pelicula = peliculas[i];
+  for(const element of user1.getLigas()){
+    let pelicula = element;
 
     //div principal
     let fila = document.createElement('div');
@@ -116,7 +122,7 @@ function cargarListaPeliculas(){
 
     //info pelicula
     let informacion = document.createElement("h2")
-    informacion.innerHTML = pelicula.titulo + " (" + pelicula.anio + ")" + " - " + pelicula.genero;
+    informacion.innerHTML = pelicula.name;
     div.appendChild(informacion);
 
     //div mdc-card media square
@@ -124,10 +130,22 @@ function cargarListaPeliculas(){
     divMediaSquare.className = "mdc-card__media mdc-card__media--square";
     div.appendChild(divMediaSquare);
 
-    // //div mdc-card media content
-    // let divMediaContent = document.createElement('div');
-    // divMediaContent.className = "mdc-card__media-content";
-    // divMediaSquare.appendChild(divMediaContent);
+    //div mdc-card media content
+    let divMediaContent = document.createElement('div');
+    divMediaContent.className = "mdc-card__media-content";
+    divMediaSquare.appendChild(divMediaContent);
+
+    //div mdc-card media title
+    let divMediaTitle = document.createElement('h3');
+    divMediaTitle.className = "mdc-card__media-title";
+    divMediaTitle.innerHTML = "Puntos por acierto exacto: " + pelicula.ptsAciertosExactos;
+    divMediaContent.appendChild(divMediaTitle);
+
+    //div mdc-card media subtitle
+    let divMediaSubtitle = document.createElement('h3');
+    divMediaSubtitle.className = "mdc-card__media-subtitle";
+    divMediaSubtitle.innerHTML = "Puntos por acierto parcial: " + pelicula.ptsAciertosParciales;
+    divMediaContent.appendChild(divMediaSubtitle);
 
     //div mdc ripple
     let divRipple = document.createElement('div');
@@ -139,18 +157,13 @@ function cargarListaPeliculas(){
 
     let saltoLinea = document.createElement('br');
     lista.appendChild(saltoLinea);
-    
-    
-
   }
-}
 
-function cargarListaLigas(){
-  let lista = document.getElementById('peliculas');
-  lista.innerHTML = "";
+  let listaLigasAll = document.getElementById('ligasGeneral');
+  listaLigasAll.innerHTML = "";
 
-  for(let i = 0; i < listaLigas.length; i++){
-    let pelicula = listaLigas[i];
+  for(const element of ligas){
+    let pelicula = element;
 
     //div principal
     let fila = document.createElement('div');
@@ -181,16 +194,31 @@ function cargarListaLigas(){
     div.appendChild(divRipple);
 
     fila.appendChild(div);
-    lista.appendChild(fila);
+    listaLigasAll.appendChild(fila);
 
     let saltoLinea = document.createElement('br');
-    lista.appendChild(saltoLinea);
-    
-    
+    listaLigasAll.appendChild(saltoLinea);
+  }
 
+
+}
+
+function loadUsersToSelect(){
+  let select = document.getElementById('user-list');
+  select.innerHTML = "";
+  for(const user of listaLigas[2]){
+    
+    let fila = document.createElement('li');
+    fila.className = "mdc-list-item";
+
+    let span = document.createElement('span');
+    span.className = "mdc-list-item__text";
+    span.innerHTML = user.username;
+    fila.appendChild(span);
+
+    select.appendChild(fila);
   }
 }
 
+loadUsersToSelect()
 cargarListaLigas();
-
-

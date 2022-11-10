@@ -4,14 +4,18 @@
 <head>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="bundle.css">
+  <!-- <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script> -->
 </head>
 
 <body>
 
-  <header class="mdc-top-app-bar">
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <span class="mdc-top-app-bar__title">Cartelera</span>
+        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
+        <span class="mdc-top-app-bar__title">Page title</span>
+        <a href="index2.html" class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">arrow_back</a>
       </section>
     </div>
 
@@ -23,9 +27,6 @@
             <button class="mdc-tab mdc-tab--active sample-content-tab" role="tab" aria-selected="true" tabindex="0">
               <span class="mdc-tab__content">
                 <span class="mdc-tab__text-label">Mis Ligas</span>
-
-
-                
               </span>
               <span class="mdc-tab-indicator mdc-tab-indicator--active">
                 <span
@@ -36,6 +37,16 @@
 
             <button class="mdc-tab sample-content-tab" role="tab" aria-selected="false" tabindex="1">
               <span class="mdc-tab__content">
+                <span class="mdc-tab__text-label">Todas las ligas</span>
+              </span>
+              <span class="mdc-tab-indicator">
+                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+              </span>
+              <span class="mdc-tab__ripple"></span>
+            </button>
+
+            <button class="mdc-tab sample-content-tab" role="tab" aria-selected="false" tabindex="2">
+              <span class="mdc-tab__content">
                 <span class="mdc-tab__text-label">Agregar liga</span>
               </span>
               <span class="mdc-tab-indicator">
@@ -43,15 +54,52 @@
               </span>
               <span class="mdc-tab__ripple"></span>
             </button>
+
           </div>
         </div>
       </div>
     </div>
   </header>
 
+  <div class="app-drawer-layout mdc-top-app-bar--fixed-adjust">
+    <!-- Drawer
+    <aside class="mdc-drawer mdc-drawer--dismissible demo-drawer">
+      <nav class="mdc-drawer__drawer">
+        <nav class="mdc-drawer__content">
+          <div id="icon-with-text-demo" class="mdc-list">
+            <a class="mdc-list-item mdc-list-item--selected demo-drawer-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>Inbox
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>Star
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>Sent Mail
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>Drafts
+            </a>
+          </div>
+  
+          <hr class="mdc-list-divider">
+  
+          <div class="mdc-list">
+            <a class="mdc-list-item demo-drawer-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">email</i>All Mail
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">delete</i>Trash
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">report</i>Spam
+            </a>
+          </div>
+        </nav>
+      </nav>
+    </aside> -->
+
   <main class="mdc-top-app-bar--fixed-adjust">
     <section class="content">
-      <h1>Peliculas</h1>
 
       <main id="peliculas"></main>
 
@@ -62,6 +110,12 @@
     
 
     </section>
+
+    <section class="content">
+
+      <main id="ligasGeneral"></main>
+    </section>
+
     <section class="content sample-content--hidden">
       <h1>Próximamente</h1>
       <label class="mdc-text-field mdc-text-field--outlined" id="title">
@@ -121,8 +175,22 @@
             </li>
           </ul>
         </div>
-      </div>
-      </div>
+        <div id="user-list">
+          <div class="mdc-list">
+            <div class="mdc-list-item">
+              <span class="mdc-list-item__ripple"></span>
+              <span class="mdc-list-item__text">Aventura</span>
+            </div>
+            <div class="mdc-list-item">
+              <span class="mdc-list-item__ripple"></span>
+              <span class="mdc-list-item__text">Drama</span>
+            </div>
+            <div class="mdc-list-item">
+              <span class="mdc-list-item__ripple"></span>
+              <span class="mdc-list-item__text">Comedia</span>
+            </div>
+          </div>
+        </div>
       <div class="button">
         <button class="mdc-button mdc-button--raised" id="addButton">
           <span class="mdc-button__label">AGREGAR</span>

@@ -75,9 +75,6 @@ export const setTestData = () => {
         'name': 'Liga 3','ptsAciertosExactos': 5,'ptsAciertosParciales': 2
     };
 
-
-
-
     let user1 = new User(user1Info);
     let user2 = new User(user2Info);
     let user3 = new User(user3Info);
@@ -96,22 +93,40 @@ export const setTestData = () => {
 
     let league = new Liga(league1Info);
     league.addUser(user1);
+    user1.addLiga(league.getLigaSinUsers())
     league.addUser(user2);
+    user2.addLiga(league.getLigaSinUsers())
     league.addUser(user3);
+    user3.addLiga(league.getLigaSinUsers())
     league.addUser(user4);
+    user4.addLiga(league.getLigaSinUsers())
     league.addUser(user5);
+    user5.addLiga(league.getLigaSinUsers())
     let league2 = new Liga(league2Info);
     league2.addUser(user6);
+    user6.addLiga(league2.getLigaSinUsers())
     league2.addUser(user7);
+    user7.addLiga(league2.getLigaSinUsers())
     league2.addUser(user8);
+    user8.addLiga(league2.getLigaSinUsers())
     league2.addUser(user9);
+    user9.addLiga(league2.getLigaSinUsers())
     league2.addUser(user10);
+    user10.addLiga(league2.getLigaSinUsers())
     let league3 = new Liga(league3Info);
     league3.addUser(user11);
+    user11.addLiga(league3.getLigaSinUsers())
     league3.addUser(user12);
+    user12.addLiga(league3.getLigaSinUsers())
     league3.addUser(user13);
+    user13.addLiga(league3.getLigaSinUsers())
     league3.addUser(user14);
+    user14.addLiga(league3.getLigaSinUsers())
     league3.addUser(user15);
+    user15.addLiga(league3.getLigaSinUsers());
 
-    return [league, league2, league3];
+    let leagues = [league, league2, league3];
+    let users = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15];
+
+    return [leagues, user1, users];
 }

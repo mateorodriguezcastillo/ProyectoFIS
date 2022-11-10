@@ -10,6 +10,8 @@
   "author": "FIS",
   "license": "",
   "dependencies": {
+    "@material/icon-button": "^14.0.0",
+    "@material/list": "^14.0.0",
     "material-components-web": "^14.0.0"
   },
   "devDependencies": {

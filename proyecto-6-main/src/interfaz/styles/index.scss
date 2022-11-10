@@ -89,11 +89,21 @@ section {
   width: 700px;
   margin: 0 auto;
   background-color: #001253;
+  border: 1px solid #001253;
+  border-radius: 5px;
+  border-color: #00bcd4;
 
   
 }
 
 .mdc-card__media-content {
-  background-image: url("https://www.nationalgeographic.com.es/medio/2019/05/30/alan-turing_8c5d84c7_1200x630.jpg");
+  //background-image: url("https://www.nationalgeographic.com.es/medio/2019/05/30/alan-turing_8c5d84c7_1200x630.jpg");
   background-size: contain;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+#user-list{
+  justify-content: center;
+  align-items: center;
 }
