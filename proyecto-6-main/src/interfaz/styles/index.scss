@@ -3,10 +3,10 @@
   $secondary: #f44336,
   $background: #c7c7c7,
 );
+@use "@material/list";
 @use '@material/button/mdc-button';
 @use '@material/button';
 @use "@material/drawer";
-@use "@material/list";
 @use "@material/tab-bar/mdc-tab-bar";
 @use "@material/tab-scroller/mdc-tab-scroller";
 @use "@material/tab-indicator/mdc-tab-indicator";
@@ -23,9 +23,16 @@
 @use "@material/menu/mdc-menu";
 @use "@material/select/styles";
 @use "@material/snackbar/mdc-snackbar";
+@use "@material/fab";
+@use "@material/checkbox";
+@use "@material/form-field";
+
+
 
 @include card.core-styles;
 @include textfield.core-styles;
+@include fab.core-styles;
+
 
 html {
   scroll-behavior: smooth;
@@ -101,9 +108,14 @@ section {
   background-size: contain;
   text-align: left;
   padding-left: 1rem;
+  overflow-y: scroll;
 }
 
 #user-list{
   justify-content: center;
   align-items: center;
+}
+
+.mdc-card__media mdc-card__media--square {
+  overflow-y: scroll;
 }
