@@ -2,24 +2,22 @@ import { MDCRipple } from '@material/ripple';
 import { MDCTopAppBar } from '@material/top-app-bar';
 import { MDCTabBar } from '@material/tab-bar';
 import { MDCTextField } from '@material/textfield';
-import {MDCList} from '@material/list';
-import { MDCSelect } from '@material/select';
-import {MDCSnackbar} from '@material/snackbar';
-import ListaPeliculas from '../../dominio/lista-peliculas.mjs';
-import Pelicula from '../../dominio/pelicula.mjs';
-import ListaLigas from '../../dominio/lista-ligas.mjs';
+import { MDCSnackbar } from '@material/snackbar';
+import {MDCFormField} from '@material/form-field';
+import {MDCCheckbox} from '@material/checkbox';
 import Liga from '../../dominio/liga.mjs';
 import { setTestData } from './utils.js';
+
 
 const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action';
 const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
   return new MDCRipple(el);
 });
 
-const listaLigas = setTestData();
-const ligas = listaLigas[0]
-const user1 = listaLigas[1];
-console.log(listaLigas);
+const testdata = setTestData();
+const ligas = testdata.leagues;
+const usuarios = testdata.users;
+const usuario1 = testdata.users[0];
 
 let id = 4;
 
@@ -37,67 +35,37 @@ tabBar.listen("MDCTabBar:activated", (activatedEvent) => {
   });
 });
 
-const textFieldTitle = new MDCTextField(document.getElementById('title'));
-const textFieldYear = new MDCTextField(document.getElementById('year'));
-const selectGenre = new MDCTextField(document.getElementById('year2'));
-
-// const addButton = new MDCRipple(document.getElementById('addButton'));
-// addButton.listen('click', () => {
-//   let title = textFieldTitle.value;
-//   let year = textFieldYear.value;
-//   let genre = selectGenre.value;
-//   borrarCampos();
-
-//   try {
-//     let newPelicula = new Pelicula(title, genre, year);
-//     listaPeliculas.agregar(newPelicula);
-//     const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
-//     snackbar.labelText = 'Pelicula agregada correctamente';
-//     snackbar.open();
-
-//   } catch (error) {
-//     const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
-//     snackbar.labelText = error.message;
-//     snackbar.open();
-//   } finally {
-//     let peliculas = listaPeliculas.getPeliculas();
-//     console.log(peliculas);
-//     cargarListaPeliculas();
-
-//   }
-// })
+const textFieldNombre = new MDCTextField(document.getElementById('nombre'));
+const textFieldPtsAciertosExactos = new MDCTextField(document.getElementById('ptsAciertoExacto'));
+const textFieldPtsAciertoParcial = new MDCTextField(document.getElementById('ptsAciertoParcial'));
 
 const addButton = new MDCRipple(document.getElementById('addButton'));
 addButton.listen('click', () => {
-  let title = textFieldTitle.value;
-  console.log(title);
-  let year = textFieldYear.value;
-  let year2 = selectGenre.value;
-  console.log(year2);
+  let nombre = textFieldNombre.value;
+  let ptsAciertosExactos = textFieldPtsAciertosExactos.value;
+  let ptsAciertoParcial = textFieldPtsAciertoParcial.value;
   borrarCampos();
-  var usuarios = ['Pepe']
+  var usuariosNombres = ['Pepe']
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
 
   for (var i = 0; i < checkboxes.length; i++) {
-    usuarios.push(checkboxes[i].id)
+    usuariosNombres.push(checkboxes[i].id)
   }
 
-  console.log(usuarios);
-
   try {
-    let leagueInfo ={
-      'id': id, 'name': title,'ptsAciertosExactos': year,'ptsAciertosParciales': year2
+    let infoLiga ={
+      'id': id, 'name': nombre,'ptsAciertosExactos': ptsAciertosExactos,'ptsAciertosParciales': ptsAciertoParcial
     };
     id++;
-    let newLiga = new Liga(leagueInfo);
-    for (var i = 0; i < usuarios.length; i++) {
-      let user = listaLigas[2].find(user => user.username === usuarios[i]);
-      if (user){
-        newLiga.addUser(user);
+    let nuevaLiga = new Liga(infoLiga);
+    for (var i = 0; i < usuariosNombres.length; i++) {
+      let usuario = usuarios.find(user => user.username === usuariosNombres[i]);
+      if (usuario){
+        nuevaLiga.addUser(usuario);
       }
     }
-    user1.addLiga(newLiga);
-    ligas.push(newLiga);
+    usuario1.addLiga(nuevaLiga);
+    ligas.push(nuevaLiga);
     const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
     snackbar.labelText = 'Liga agregada correctamente';
     snackbar.open();
@@ -112,17 +80,27 @@ addButton.listen('click', () => {
 })
 
 function borrarCampos(){
-  textFieldTitle.value = "";
-  textFieldYear.value = "";
-  selectGenre.value = "";
+  textFieldNombre.value = "";
+  textFieldPtsAciertosExactos.value = "";
+  textFieldPtsAciertoParcial.value = "";
 }
 
-function cargarListaLigas(){
-  let lista = document.getElementById('peliculas');
+function cargarMisLigas(){
+  let lista = document.getElementById('misLigas');
   lista.innerHTML = "";
 
-  for(const element of user1.getLigas()){
-    let pelicula = element;
+  for(const element of usuario1.getLigas()){
+    let liga = element;
+    let arrayNoOrder = [];
+
+    for(const user of liga.userList){
+      let puntos = (user.aciertosExactos * liga.ptsAciertosExactos) + (user.aciertosParciales * liga.ptsAciertosParciales);
+      arrayNoOrder.push([user.username, puntos]);
+    }
+
+    let arrayOrder = arrayNoOrder.sort(function(a, b) {
+      return b[1] - a[1];
+    });
 
     //div principal
     let fila = document.createElement('div');
@@ -134,7 +112,7 @@ function cargarListaLigas(){
 
     //info pelicula
     let informacion = document.createElement("h2")
-    informacion.innerHTML = pelicula.name;
+    informacion.innerHTML = liga.name;
     div.appendChild(informacion);
 
     //div mdc-card media square
@@ -150,22 +128,22 @@ function cargarListaLigas(){
     //div mdc-card media title
     let divMediaTitle = document.createElement('h3');
     divMediaTitle.className = "mdc-card__media-title";
-    divMediaTitle.innerHTML = "Puntos por acierto exacto: " + pelicula.ptsAciertosExactos;
+    divMediaTitle.innerHTML = "Puntos por acierto exacto: " + liga.ptsAciertosExactos;
     divMediaContent.appendChild(divMediaTitle);
 
     //div mdc-card media subtitle
     let divMediaSubtitle = document.createElement('h3');
     divMediaSubtitle.className = "mdc-card__media-subtitle";
-    divMediaSubtitle.innerHTML = "Puntos por acierto parcial: " + pelicula.ptsAciertosParciales;
+    divMediaSubtitle.innerHTML = "Puntos por acierto parcial: " + liga.ptsAciertosParciales;
     divMediaContent.appendChild(divMediaSubtitle);
 
-    console.log(pelicula);
-
-    for(const user of pelicula.userList){
+    let i = 0;
+    for(const user of arrayOrder){
       let divMediaSubtitle = document.createElement('h3');
       divMediaSubtitle.className = "mdc-card__media-subtitle";
-      divMediaSubtitle.innerHTML = user.username;
+      divMediaSubtitle.innerHTML = user[0] + " - " + user[1];
       divMediaContent.appendChild(divMediaSubtitle);
+      i++;
     }
 
     //div mdc ripple
@@ -179,7 +157,9 @@ function cargarListaLigas(){
     let saltoLinea = document.createElement('br');
     lista.appendChild(saltoLinea);
   }
+}
 
+function cargarLigasGeneral(){
   let listaLigasAll = document.getElementById('ligasGeneral');
   listaLigasAll.innerHTML = "";
 
@@ -268,16 +248,17 @@ function cargarListaLigas(){
     listaLigasAll.appendChild(saltoLinea);
   }
 
-
 }
 
-function loadUsersToSelect(){
+function cargarUsuariosASeleccionar(){
   let select = document.getElementById('user-list');
   select.innerHTML = "";
-  for(const user of listaLigas[2]){
-    if (user.username != user1.username){
+  let ul = document.createElement('ul');
+  select.appendChild(ul);
+  for(const user of usuarios){
+    if (user.username != usuario1.username){
+      
       let fila = document.createElement('li');
-      // fila.className = "mdc-list-item";
 
       let checkbox = document.createElement('input');
       checkbox.id = user.username;
@@ -289,17 +270,85 @@ function loadUsersToSelect(){
       span.innerHTML = user.username;
       fila.appendChild(span);
 
-      select.appendChild(fila);
+      ul.appendChild(fila);
     }
   }
 }
 
-// function unirseLiga(liga){
-//   let select = document.getElementById('user-list');
-//   let users = [];
-//   for(const user of select.children){
-//     if(user.children[0].checked){
+{/* <div class="mdc-checkbox">
+  <input type="checkbox"
+          class="mdc-checkbox__native-control"
+          id="checkbox-1"/>
+  <div class="mdc-checkbox__background">
+    <svg class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24">
+      <path class="mdc-checkbox__checkmark-path"
+            fill="none"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+    </svg>
+    <div class="mdc-checkbox__mixedmark"></div>
+  </div>
+  <div class="mdc-checkbox__ripple"></div>
+</div>
+<label for="checkbox-1">Checkbox 1</label> */}
+
+// function cargarUsuariosASeleccionar(){
+//   let select = document.getElementById('users-list-checkbox');
+
+//   let ul = document.getElementById('user-list-ul');
+//   select.appendChild(ul);
+
+//   for (const user of usuarios){
+//     if (user.username != usuario1.username){
+
+//       let fila = document.createElement('li');
+//       ul.appendChild(fila);
+
+//       let divMdcCheckbox = document.createElement('div');
+//       divMdcCheckbox.className = "mdc-checkbox";
+//       fila.appendChild(divMdcCheckbox);
+
+//       let input = document.createElement('input');
+//       input.type = "checkbox";
+//       input.className = "mdc-checkbox__native-control";
+//       input.id = user.username;
+//       divMdcCheckbox.appendChild(input);
+
+//       let divMdcCheckboxBackground = document.createElement('div');
+//       divMdcCheckboxBackground.className = "mdc-checkbox__background";
+//       divMdcCheckbox.appendChild(divMdcCheckboxBackground);
+
+//       let svg = document.createElement('svg');
+//       svg.className = "mdc-checkbox__checkmark";
+//       svg.viewBox = "0 0 24 24";
+//       divMdcCheckboxBackground.appendChild(svg);
+
+//       let path = document.createElement('path');
+//       path.className = "mdc-checkbox__checkmark-path";
+//       path.fill = "none";
+//       path.d = "M1.73,12.91 8.1,19.28 22.79,4.59";
+//       svg.appendChild(path);
+
+//       let divMdcCheckboxMixedmark = document.createElement('div');
+//       divMdcCheckboxMixedmark.className = "mdc-checkbox__mixedmark";
+//       divMdcCheckboxBackground.appendChild(divMdcCheckboxMixedmark);
+
+//       let divMdcCheckboxRipple = document.createElement('div');
+//       divMdcCheckboxRipple.className = "mdc-checkbox__ripple";
+//       divMdcCheckbox.appendChild(divMdcCheckboxRipple);
+
+//       let label = document.createElement('label');
+//       label.for = user.username;
+//       label.innerHTML = user.username;
+//       divMdcCheckbox.appendChild(label);
+//     }
+//   }
+//   const checkbox = new MDCCheckbox(document.querySelector('.mdc-checkbox'));
+//   const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
+//   formField.input = checkbox;
+// }
 
 
-loadUsersToSelect()
-cargarListaLigas();
+cargarUsuariosASeleccionar()
+cargarLigasGeneral();
+cargarMisLigas();

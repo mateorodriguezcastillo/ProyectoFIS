@@ -61,47 +61,10 @@
     </div>
   </header>
 
-  <div class="app-drawer-layout mdc-top-app-bar--fixed-adjust">
-    <!-- Drawer
-    <aside class="mdc-drawer mdc-drawer--dismissible demo-drawer">
-      <nav class="mdc-drawer__drawer">
-        <nav class="mdc-drawer__content">
-          <div id="icon-with-text-demo" class="mdc-list">
-            <a class="mdc-list-item mdc-list-item--selected demo-drawer-list-item" href="#">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>Inbox
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>Star
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>Sent Mail
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>Drafts
-            </a>
-          </div>
-  
-          <hr class="mdc-list-divider">
-  
-          <div class="mdc-list">
-            <a class="mdc-list-item demo-drawer-list-item" href="#">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">email</i>All Mail
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">delete</i>Trash
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">report</i>Spam
-            </a>
-          </div>
-        </nav>
-      </nav>
-    </aside> -->
-
   <main class="mdc-top-app-bar--fixed-adjust">
     <section class="content">
 
-      <main id="peliculas"></main>
+      <main id="misLigas"></main>
 
 
       <!-- esta esta buena -->
@@ -111,14 +74,14 @@
 
     </section>
 
-    <section class="content">
+    <section class="content sample-content--hidden">
 
       <main id="ligasGeneral"></main>
     </section>
 
     <section class="content sample-content--hidden">
       <h1>Próximamente</h1>
-      <label class="mdc-text-field mdc-text-field--outlined" id="title">
+      <label class="mdc-text-field mdc-text-field--outlined" id="nombre">
         <span class="mdc-notched-outline">
           <span class="mdc-notched-outline__leading"></span>
           <span class="mdc-notched-outline__notch">
@@ -126,9 +89,9 @@
           </span>
           <span class="mdc-notched-outline__trailing"></span>
         </span>
-        <input type="text" class="mdc-text-field__input" aria-labelledby="title">
+        <input type="text" class="mdc-text-field__input" aria-labelledby="nombre">
       </label>
-      <label class="mdc-text-field mdc-text-field--outlined" id="year">
+      <label class="mdc-text-field mdc-text-field--outlined" id="ptsAciertoExacto">
         <span class="mdc-notched-outline">
           <span class="mdc-notched-outline__leading"></span>
           <span class="mdc-notched-outline__notch">
@@ -136,9 +99,9 @@
           </span>
           <span class="mdc-notched-outline__trailing"></span>
         </span>
-        <input type="number" class="mdc-text-field__input" aria-labelledby="year">
+        <input type="number" class="mdc-text-field__input" aria-labelledby="ptsAciertoExacto">
       </label>
-      <label class="mdc-text-field mdc-text-field--outlined" id="year2">
+      <label class="mdc-text-field mdc-text-field--outlined" id="ptsAciertoParcial">
         <span class="mdc-notched-outline">
           <span class="mdc-notched-outline__leading"></span>
           <span class="mdc-notched-outline__notch">
@@ -146,7 +109,7 @@
           </span>
           <span class="mdc-notched-outline__trailing"></span>
         </span>
-        <input type="number" class="mdc-text-field__input" aria-labelledby="year2">
+        <input type="number" class="mdc-text-field__input" aria-labelledby="ptsAciertoParcial">
       </label>
       
 
@@ -175,8 +138,13 @@
             </li>
           </ul>
         </div>
-        <div id="user-list">
+        <div id="users-list-checkbox" class="mdc-form-field">
           
+        </div>
+        <div id="user-list" class="grid-container">
+          <ul id="user-list-ul">
+
+          </ul>
         </div>
       <div class="button">
         <button class="mdc-button mdc-button--raised" id="addButton">
