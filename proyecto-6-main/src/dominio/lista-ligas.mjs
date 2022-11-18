@@ -1,5 +1,5 @@
 export default class ListaLigas {
-
+  
   constructor(arrayDeLigas) {
     this.ligas = arrayDeLigas;
     this.idAAsignar = 4;
