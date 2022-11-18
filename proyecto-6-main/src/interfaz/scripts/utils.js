@@ -47,32 +47,32 @@ export const setTestData = () => {
     };
 
     let user12Info ={
-        'username': 'Pablo','aciertosExactos': 0,'aciertosParciales': 3,'errores': 2
+        'username': 'Pablonsky','aciertosExactos': 0,'aciertosParciales': 3,'errores': 2
     };
 
     let user13Info ={
-        'username': 'Pablo','aciertosExactos': 2,'aciertosParciales': 1,'errores': 2
+        'username': 'Pabloide','aciertosExactos': 2,'aciertosParciales': 1,'errores': 2
     };
 
     let user14Info ={
-        'username': 'Pablo','aciertosExactos': 1,'aciertosParciales': 2,'errores': 2
+        'username': 'Pabla','aciertosExactos': 1,'aciertosParciales': 2,'errores': 2
     };
 
     let user15Info ={
-        'username': 'Pablo','aciertosExactos': 3,'aciertosParciales': 0,'errores': 2
+        'username': 'Pablito','aciertosExactos': 3,'aciertosParciales': 0,'errores': 2
     };
 
     //Ligas
     let league1Info ={
-        'name': 'Liga 1','ptsAciertosExactos': 3,'ptsAciertosParciales': 1
+        'id': 1, 'name': 'Liga 1','ptsAciertosExactos': 3,'ptsAciertosParciales': 1
     };
 
     let league2Info ={
-        'name': 'Liga 2','ptsAciertosExactos': 2,'ptsAciertosParciales': 1
+        'id': 2, 'name': 'Liga 2','ptsAciertosExactos': 2,'ptsAciertosParciales': 1
     };
 
     let league3Info ={
-        'name': 'Liga 3','ptsAciertosExactos': 5,'ptsAciertosParciales': 2
+        'id': 3, 'name': 'Liga 3','ptsAciertosExactos': 10,'ptsAciertosParciales': 1
     };
 
     let user1 = new User(user1Info);
@@ -93,40 +93,43 @@ export const setTestData = () => {
 
     let league = new Liga(league1Info);
     league.addUser(user1);
-    user1.addLiga(league.getLigaSinUsers())
+    // user1.addLiga(league.getLiga())
     league.addUser(user2);
-    user2.addLiga(league.getLigaSinUsers())
+    // user2.addLiga(league.getLiga())
     league.addUser(user3);
-    user3.addLiga(league.getLigaSinUsers())
+    // user3.addLiga(league.getLiga())
     league.addUser(user4);
-    user4.addLiga(league.getLigaSinUsers())
+    // user4.addLiga(league.getLiga())
     league.addUser(user5);
-    user5.addLiga(league.getLigaSinUsers())
+    // user5.addLiga(league.getLiga())
     let league2 = new Liga(league2Info);
     league2.addUser(user6);
-    user6.addLiga(league2.getLigaSinUsers())
+    // user6.addLiga(league2.getLiga())
     league2.addUser(user7);
-    user7.addLiga(league2.getLigaSinUsers())
+    // user7.addLiga(league2.getLiga())
     league2.addUser(user8);
-    user8.addLiga(league2.getLigaSinUsers())
+    // user8.addLiga(league2.getLiga())
     league2.addUser(user9);
-    user9.addLiga(league2.getLigaSinUsers())
+    // user9.addLiga(league2.getLiga())
     league2.addUser(user10);
-    user10.addLiga(league2.getLigaSinUsers())
+    // user10.addLiga(league2.getLiga())
     let league3 = new Liga(league3Info);
     league3.addUser(user11);
-    user11.addLiga(league3.getLigaSinUsers())
+    // user11.addLiga(league3.getLiga())
     league3.addUser(user12);
-    user12.addLiga(league3.getLigaSinUsers())
+    // user12.addLiga(league3.getLiga())
     league3.addUser(user13);
-    user13.addLiga(league3.getLigaSinUsers())
+    // user13.addLiga(league3.getLiga())
     league3.addUser(user14);
-    user14.addLiga(league3.getLigaSinUsers())
+    // user14.addLiga(league3.getLiga())
     league3.addUser(user15);
-    user15.addLiga(league3.getLigaSinUsers());
+    // user15.addLiga(league3.getLiga());
 
     let leagues = [league, league2, league3];
     let users = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15];
 
-    return [leagues, user1, users];
+    return {
+        'leagues': leagues,
+        'users': users,
+    }
 }

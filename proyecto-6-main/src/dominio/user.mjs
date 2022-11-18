@@ -4,8 +4,8 @@ export default class User {
         this.aciertosExactos = dataArray['aciertosExactos'];//que equipo y con que resultdo (toma en cuenta el empate)
         this.aciertosParciales = dataArray['aciertosParciales'];//que equipo gano
         this.errores = dataArray['errores'];//fallo la prediccion
+        // this.ligas = [];
 	}
-
 
     getUser() {
         return {
@@ -27,4 +27,12 @@ export default class User {
     getErrores() {
         return this.errores;
     }   
+
+    // addLiga(liga){
+    //     this.ligas.push(liga);
+    // }
+
+    // getLigas(){
+    //     return this.ligas;
+    // }
 }

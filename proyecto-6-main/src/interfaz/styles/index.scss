@@ -3,10 +3,10 @@
   $secondary: #f44336,
   $background: #c7c7c7,
 );
+@use "@material/list";
 @use '@material/button/mdc-button';
 @use '@material/button';
 @use "@material/drawer";
-@use "@material/list";
 @use "@material/tab-bar/mdc-tab-bar";
 @use "@material/tab-scroller/mdc-tab-scroller";
 @use "@material/tab-indicator/mdc-tab-indicator";
@@ -23,9 +23,16 @@
 @use "@material/menu/mdc-menu";
 @use "@material/select/styles";
 @use "@material/snackbar/mdc-snackbar";
+@use "@material/fab";
+@use "@material/checkbox";
+@use "@material/form-field";
 
+@include checkbox.core-styles;
+@include form-field.core-styles;
 @include card.core-styles;
 @include textfield.core-styles;
+@include fab.core-styles;
+
 
 html {
   scroll-behavior: smooth;
@@ -92,8 +99,6 @@ section {
   border: 1px solid #001253;
   border-radius: 5px;
   border-color: #00bcd4;
-
-  
 }
 
 .mdc-card__media-content {
@@ -101,9 +106,37 @@ section {
   background-size: contain;
   text-align: left;
   padding-left: 1rem;
+  overflow-y: scroll;
+}
+
+.mdc-text-field {
+  color: #fff;
+
 }
 
 #user-list{
   justify-content: center;
   align-items: center;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 1rem;
+  // border: 1px solid #00bcd4;
+  // border-radius: 5px;
+  // background-color: #001253;
+  color: white;
+}
+
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+li{
+  text-align: left;
+  cursor: pointer;
+  margin-left: 45%;
+}
+
+.mdc-card__media mdc-card__media--square {
+  overflow-y: scroll;
 }
