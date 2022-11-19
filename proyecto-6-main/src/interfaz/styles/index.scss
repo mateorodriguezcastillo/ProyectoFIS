@@ -1,6 +1,6 @@
 @use "@material/theme" with (
-  $primary: #00bcd4,
-  $secondary: #f44336,
+  $primary: #1b5e20,
+  $secondary: #0277bd,
   $background: #c7c7c7,
 );
 @use "@material/list";
@@ -41,8 +41,7 @@ html {
 body {
   font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0px auto;
-  background-color: #153462;
-  color: #fff;
+  color: #0277bd;
 }
 
 .app-bar {
@@ -51,8 +50,8 @@ body {
 
 .mdc-top-app-bar {
   z-index: 7;
-  background-color: #001253;
-  color: white;
+  // background-color: #001253;
+
 }
 
 section {
@@ -70,7 +69,7 @@ section {
 }
 
 .mdc-tab {
-    background-color: #001253;
+    background-color: #60ad5e;
 }
 
 .mdc-tab__content .mdc-tab__text-label {
@@ -95,10 +94,10 @@ section {
   height: 435px;
   width: 700px;
   margin: 0 auto;
-  background-color: #001253;
-  border: 1px solid #001253;
+  border: 3px solid;
   border-radius: 5px;
-  border-color: #00bcd4;
+  border-color: #1b5e20;
+  background-color: #77ca66;
 }
 
 .mdc-card__media-content {
@@ -123,7 +122,6 @@ section {
   // border: 1px solid #00bcd4;
   // border-radius: 5px;
   // background-color: #001253;
-  color: white;
 }
 
 ul{
@@ -139,4 +137,12 @@ li{
 
 .mdc-card__media mdc-card__media--square {
   overflow-y: scroll;
+}
+
+img{
+  width: 10%;
+  height: 100%;
+  margin: auto;
+  min-width: 140px;
+  filter: saturate(3);
 }
