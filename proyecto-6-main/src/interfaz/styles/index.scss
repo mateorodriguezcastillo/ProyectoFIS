@@ -1,6 +1,6 @@
 @use "@material/theme" with (
-  $primary: #1b5e20,
-  $secondary: #0277bd,
+  $primary: #620421,
+  $secondary: #fff,
   $background: #c7c7c7,
 );
 @use "@material/list";
@@ -41,7 +41,7 @@ html {
 body {
   font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0px auto;
-  color: #0277bd;
+  color: #fff;
 }
 
 .app-bar {
@@ -50,7 +50,6 @@ body {
 
 .mdc-top-app-bar {
   z-index: 7;
-  // background-color: #001253;
 
 }
 
@@ -69,7 +68,7 @@ section {
 }
 
 .mdc-tab {
-    background-color: #60ad5e;
+    background-color: #B70333;
 }
 
 .mdc-tab__content .mdc-tab__text-label {
@@ -80,8 +79,11 @@ section {
     margin: 1rem auto;
 }
 
-.button {
+.mdc-button {
   margin-top: 1rem;
+  color: #fff !important;
+  display: flex !important;
+  margin: auto !important;
 }
 
 .mdc-snackbar__actions .mdc-button__label {
@@ -96,12 +98,11 @@ section {
   margin: 0 auto;
   border: 3px solid;
   border-radius: 5px;
-  border-color: #1b5e20;
-  background-color: #77ca66;
+  border-color: #620421;
+  background-color: #B70333;
 }
 
 .mdc-card__media-content {
-  //background-image: url("https://www.nationalgeographic.com.es/medio/2019/05/30/alan-turing_8c5d84c7_1200x630.jpg");
   background-size: contain;
   text-align: left;
   padding-left: 1rem;
@@ -119,9 +120,7 @@ section {
   margin-left: 20%;
   margin-right: 20%;
   margin-top: 1rem;
-  // border: 1px solid #00bcd4;
-  // border-radius: 5px;
-  // background-color: #001253;
+  color: black;
 }
 
 ul{
@@ -145,4 +144,12 @@ img{
   margin: auto;
   min-width: 140px;
   filter: saturate(3);
+}
+
+h1{
+  color: #620421;
+}
+
+.dorado{
+  color: #F2B502;
 }

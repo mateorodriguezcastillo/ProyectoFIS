@@ -7,7 +7,6 @@ export default class Liga {
         this.userList = [];
 	}
 
-    //function that get Liga data
     getLiga() {
         return {
             id: this.id,
@@ -17,15 +16,6 @@ export default class Liga {
             userList: this.userList,
         };
     }
-
-    // getLigaSinUsers() {
-    //     return {
-    //         id: this.id,
-    //         name: this.name,
-    //         ptsAciertosExactos: this.ptsAciertosExactos,
-    //         ptsAciertosParciales: this.ptsAciertosParciales,
-    //     }
-    // }
 
     getPtsAciertosExactos() {
         return this.ptsAciertosExactos;
